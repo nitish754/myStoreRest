@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\productResource;
+use App\Http\Resources\Product as ProductCollection;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        //
+        // return Product::all();
+        return  ProductCollection::collection(Product::all());
     }
 
     /**
@@ -35,7 +34,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->all());
+        
+        // $product = new Product;
+        // $product->product_name= $request->get('name');
+        // $product->product_details= $request->get('details');
+        // $product->price= $request->get('price');
+        // $product->discount= $request->get('discount');
+        // $product->stock = $request->get('stock');
+        // $product->save();
+        
+        // return response()->json(["message"=>'product created successfully'],201);
+        
     }
 
     /**
@@ -46,7 +57,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        
+
+        $pro = new productResource($product);
+        return $pro;
     }
 
     /**
